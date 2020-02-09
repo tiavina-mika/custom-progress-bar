@@ -25,6 +25,7 @@ const useStyles = makeStyles({
   violetBar: {
     background: 'linear-gradient(to bottom, #9A89E3, #8C71E5 50%, #8C71E5 75%, #815EE6 100%)',
   },
+  
   percent: {
     color: '#9FB1CA',
     fontWeight: 600
