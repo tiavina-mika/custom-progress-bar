@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Box from '@material-ui/core/Box';
@@ -15,12 +15,15 @@ const BorderLinearProgress = withStyles({
   },
 })(LinearProgress);
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles({
   blueBar: {
     background: 'linear-gradient(to bottom, #2B9FF6, #269BF3 50%, #2097F0 75%, #4FA9EE 100%)',
   },
   greenBar: {
-    background: 'linear-gradient(to bottom, #2B9FF6, #269BF3 50%, #2097F0 75%, #4FA9EE 100%)',
+    background: 'linear-gradient(to bottom, #56D7A7, #37C48F 50%, #2CBC86 75%, #22B77F 100%)',
+  },
+  violetBar: {
+    background: 'linear-gradient(to bottom, #9A89E3, #8C71E5 50%, #8C71E5 75%, #815EE6 100%)',
   },
   percent: {
     color: '#9FB1CA',
@@ -30,19 +33,16 @@ const useStyles = makeStyles(theme => ({
     color: '#76797F',
     fontSize: 18
   },
-  margin: {
-    margin: theme.spacing(1),
-  },
-}));
+});
 
 const Progress = ({ value, color, width, label }) => {
   const classes = useStyles();
-  const [completed, setCompleted] = React.useState(0);
-  const [data, setData] = React.useState(0);
+  const [completed, setCompleted] = useState(0);
+  const [data, setData] = useState(0);
 
-  React.useEffect(() => setData(value), [value]);
+  useEffect(() => setData(value), [value]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const progress = max => setCompleted(max);
     progress(data)
   }, [data]);
@@ -51,11 +51,12 @@ const Progress = ({ value, color, width, label }) => {
     let colored;
     if (color === 'blue') colored = classes.blueBar;
     if (color === 'green') colored = classes.greenBar;
+    if (color === 'violet') colored = classes.violetBar;
     return colored;
   }
 
   return (
-    <Box p={1} mb={2}>
+    <Box p={1} mb={1}>
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={0.5}>
         <Typography className={classes.label}>{label}</Typography>
         <Typography className={classes.percent}>{value}%</Typography>
