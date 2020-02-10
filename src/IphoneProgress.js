@@ -36,7 +36,7 @@ const useStyles = makeStyles({
   },
 });
 
-const Progress = ({ value, color, width, label }) => {
+const IphoneProgress = ({ value, color, width, label }) => {
   const classes = useStyles();
   const [completed, setCompleted] = useState(0);
   const [data, setData] = useState(0);
@@ -73,4 +73,4 @@ const Progress = ({ value, color, width, label }) => {
   );
 }
 
-export default Progress;
+export default IphoneProgress;
