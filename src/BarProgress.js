@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  BarChart, Bar, XAxis, YAxis, LabelList, Tooltip,
+  BarChart, Bar, XAxis, YAxis, LabelList,
 } from 'recharts';
 
 const data = [
@@ -52,5 +52,5 @@ const Chart = ({ color }) => {
     );
 }
 
-export default Chart;;
+export default Chart;
 
