@@ -3,6 +3,7 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import LabeledProgress from './LabeledProgress';
 import IphoneProgress from './IphoneProgress';
+import BarProgress from './BarProgress';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
             <IphoneProgress value={42} color="green" label="PHP" type="iphone"/>
             <IphoneProgress value={100} color="violet" label="Python" type="iphone"/>
         </Box>
+
         <Box>
             <Box p={1}>
                 <Typography variant="h6">Frontend</Typography>
@@ -23,13 +25,19 @@ const App = () => {
             <LabeledProgress value={40} label="Angular"/>
             <LabeledProgress value={100} label="HTML"/>
         </Box>
-        <Box>
+        <Box my={4}>
             <Box p={1}>
                 <Typography variant="h6">Backend</Typography>
             </Box>
             <IphoneProgress value={86} label="NodeJs" color="orange" type="paper"/>
             <IphoneProgress value={32} label="Symfony" color="green" type="paper"/>
             <IphoneProgress value={50} label="Ruby on Rails" color="blue" type="paper"/>
+        </Box>
+        <Box my={3}>
+            <Box p={1}>
+                <Typography variant="h6">Design</Typography>
+            </Box>
+            <BarProgress value={60} color="blue" />
         </Box>
     </Box>
   );

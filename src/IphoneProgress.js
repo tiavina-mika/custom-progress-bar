@@ -52,6 +52,28 @@ const useStyles = makeStyles({
   },
 });
 
+const getColorBarClassName = (type, classes, color) => {
+  let colored = classes.iBlue;
+  if (type === "iphone") {
+    if (color === 'blue') colored = classes.iBlue;
+    if (color === 'green') colored = classes.iGreen;
+    if (color === 'violet') colored = classes.iViolet;
+  } else if (type === "paper") {
+    if (color === 'orange') colored = classes.paperOrange;
+    if (color === 'green') colored = classes.paperGreenLight;
+    if (color === 'blue') colored = classes.paperBlueLight;
+  }
+  return colored;
+}
+
+const getContainerClassName = (type, classes) => {
+  let root = classes.iphoneRoot;
+  if (type === "paper") {
+    root = classes.paperRoot;
+  }
+  return root;
+}
+
 const IphoneProgress = ({ value, color, width, label, type }) => {
   const classes = useStyles();
   const [completed, setCompleted] = useState(0);
@@ -64,28 +86,6 @@ const IphoneProgress = ({ value, color, width, label, type }) => {
     progress(data)
   }, [data]);
 
-  const getColorBarClassName = () => {
-    let colored;
-    if (type === "iphone") {
-      if (color === 'blue') colored = classes.iBlue;
-      if (color === 'green') colored = classes.iGreen;
-      if (color === 'violet') colored = classes.iViolet;
-    } else if (type === "paper") {
-      if (color === 'orange') colored = classes.paperOrange;
-      if (color === 'green') colored = classes.paperGreenLight;
-      if (color === 'blue') colored = classes.paperBlueLight;
-    }
-    return colored;
-  }
-
-  const getContainerClassName = () => {
-    let root = classes.iphoneRoot;
-    if (type === "paper") {
-      root = classes.paperRoot;
-    }
-    return root;
-  }
-
   return (
     <Box p={1} mb={1}>
       <Box display="flex" justifyContent="space-between" alignItems="center" mb={0.5}>
@@ -97,9 +97,9 @@ const IphoneProgress = ({ value, color, width, label, type }) => {
         color="secondary"
         value={completed}
         classes={{ 
-          root: getContainerClassName(), 
+          root: getContainerClassName(type, classes), 
           bar: clsx(
-            getColorBarClassName(), 
+            getColorBarClassName(type, classes, color), 
             type ==="iphone"? classes.iphoneBar: classes.paperBar
           ) 
         }}
